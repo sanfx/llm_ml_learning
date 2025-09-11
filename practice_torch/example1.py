@@ -22,9 +22,11 @@ class TinyLM(nn.Module):
         self.fc = nn.Linear(hidden_size, vocab_size)
 
     def forward(self, x):
+        """PyTorch models, the forward method ends with raw logits."""
         x = self.embed(x)
-        out, _ = self.rnn(x)
-        return self.fc(out)
+        out, _ = self.rnn(x)    # [batch, hidden_size]
+        logits = self.fc(out)   # [batch, vocab_size]
+        return logits
 
 # Training setup
 model = TinyLM(len(chars))

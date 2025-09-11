@@ -14,7 +14,9 @@ class TinyLM(nn.Module):
             self.rnn = nn.GRU(hidden_size, hidden_size, batch_first=True)
         else:
             raise ValueError("rnn_type must be 'LSTM' or 'GRU'")
-        self.fc = nn.Linear(hidden_size, vocab_size)
+
+        # line below is an important part of how a language model generates words/tokens
+        self.fc = nn.Linear(hidden_size, vocab_size) # creates a fully connected (dense) layer
 
     def forward(self, x):
         x = self.embed(x)
