@@ -13,11 +13,12 @@ idx2char = {i: ch for ch, i in char2idx.items()}
 # Encode text into integers
 data = [char2idx[ch] for ch in text]
 
-# Model: small RNN (Reoccuring Neural Network)
+# Model: small RNN (Recurrent Neural Network)
 class TinyLM(nn.Module):
     def __init__(self, vocab_size, hidden_size=16):
         super().__init__()
-        self.embed = nn.Embedding(vocab_size, hidden_size)
+        # Convert tokens (like word indices or character IDs) → dense vectors.
+        self.embed = nn.Embedding(vocab_size, hidden_size) # preprocessing step (map IDs to vectors).
         self.rnn = nn.RNN(hidden_size, hidden_size, batch_first=True)
         self.fc = nn.Linear(hidden_size, vocab_size)
 

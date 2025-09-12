@@ -1,3 +1,14 @@
+preprocessing step (map IDs to vectors).
+===
+
+<code>self.embed = nn.Embedding(vocab_size, hidden_size)</code>
+
+Embedding (TinyLM):
+
+    → Converts discrete token IDs → dense vectors (learned representations).
+    → Example: word "cat" (ID=5) → vector [0.2, -0.7, 1.1, …].
+    → Purpose: gives the model semantic information instead of just raw IDs.
+
 Final prediction layer of a language model
 ===
 <h4>line of code below is an important part of how a language model generates words/tokens</h4>
@@ -52,3 +63,19 @@ If we applied softmax in the model, we’d be doing extra unnecessary work.
 3. You apply torch.softmax (or argmax) outside when you need probabilities or predictions.
 
 <img src="./image/flow_of_prediction.png" />
+
+---
+internal RNN step (combine current input with memory from the past).
+====
+Example api: `torch.cat` used <a href="https://github.com/patrickloeber/pytorch-examples/blob/master/rnn-name-classification/rnn.py#L20">here</a>
+
+Used when dataset (character classification on names) already represents characters as one-hot vectors (like `[0,0,1,0,...]`).
+
+<code>combined = torch.cat((input_tensor, hidden_tensor), 1)</code>
+
+    torch.cat (RNN):
+    → Concatenates input features + previous hidden state into one long vector.
+    → Example: [input_t, hidden_t] → [0.4, 0.9, -0.3, …, 0.8, 0.5].
+    → Purpose: manually builds the “combined” vector that the custom RNN cell will process.
+
+<img src="./image/407735c8-8ae2-44e1-a940-e3af8058ee78.png" />
