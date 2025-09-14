@@ -79,3 +79,28 @@ Used when dataset (character classification on names) already represents charact
     → Purpose: manually builds the “combined” vector that the custom RNN cell will process.
 
 <img src="./image/407735c8-8ae2-44e1-a940-e3af8058ee78.png" />
+
+<h3>🔍 Where tokenization Fits in the entire machine learning pipeline</h3>
+<p>in case of <a href="tokenizer.py"><code>tokenzier.py</code></a> it refers to <b>NLP modeling pipeline</b></p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left;">Stage</th>
+      <th style="text-align:left;">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Pre-classification</td>
+      <td>Text → Token IDs</td>
+    </tr>
+    <tr>
+      <td>Classification</td>
+      <td>Token IDs → Embeddings → Model Output</td>
+    </tr>
+    <tr>
+      <td>Post-classification</td>
+      <td>Output IDs → Decoded Text</td>
+    </tr>
+  </tbody>
+</table>
