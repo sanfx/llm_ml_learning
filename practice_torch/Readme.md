@@ -60,7 +60,7 @@ If we applied softmax in the model, we’d be doing extra unnecessary work.
 
 2. No softmax inside the class → because nn.CrossEntropyLoss already expects logits.
 
-3. You apply torch.softmax (or argmax) outside when you need probabilities or predictions.
+3. <b><font color=red>You apply torch.softmax (or argmax) outside when you need probabilities or predictions</font></b>.
 
 <img src="./image/flow_of_prediction.png" />
 
